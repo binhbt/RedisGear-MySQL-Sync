@@ -8,7 +8,7 @@ docker-compose up -d
 ## Create Persons table
 ```bash
 docker exec -it <mysql container id> /bin/bash
-mysql -u root -p # set password my-secret-pw
+mysql -u root -p # set password pass
 CREATE DATABASE test;
 CREATE TABLE test.persons (person_id VARCHAR(100) NOT NULL, first VARCHAR(100) NOT NULL, last VARCHAR(100) NOT NULL, age INT NOT NULL, PRIMARY KEY (person_id));
 CREATE USER 'demouser'@'%' IDENTIFIED BY 'Password123!';
@@ -29,7 +29,7 @@ OR
 Make sure data reached MySql server:
 ```bash
 docker exec -it <mysql container id> /bin/bash
-mysql -u root -p # set password my-secret-pw
+mysql -u root -p # set password pass
 mysql> select * from test.persons;
 +-----------+-------+------+-----+
 | person_id | first | last | age |
