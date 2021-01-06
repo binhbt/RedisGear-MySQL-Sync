@@ -1,0 +1,22 @@
+version: "3.0"
+
+services:
+ gear-cli:
+    image: gear-cli
+    build: 
+      context: gear-cli/.
+      dockerfile: Dockerfile
+    command: sh -c "gears-cli run --host gear-sync --port 6379  example.py --requirements requirements.txt; while true; do echo hello; sleep 200; done"
+    depends_on:
+        - gear-sync
+        - mysql-db
+ mysql-db:
+    image: mysql:latest
+    environment:
+       - MYSQL_ROOT_PASSWORD=pass
+    ports:
+      - 3307:3306
+ gear-sync:
+    image: redislabs/redisgears:latest
+    ports:
+      - 6379:6379
